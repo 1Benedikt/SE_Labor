@@ -70,6 +70,18 @@ public class VormerkKarte {
 		return _vormerkkunden.isEmpty();
 	}
 	
+	public boolean istVoll()
+	{
+		if (_vormerkkunden.size() == 3)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	/**
 	 * Gibt den nächsten Kunden zurück 
 	 * @return Nächster Kunde
@@ -77,6 +89,7 @@ public class VormerkKarte {
 	public Kunde getNaechstenKunden()
 	{
 		return _vormerkkunden.peek();
+		
 	}
 	
 	/**

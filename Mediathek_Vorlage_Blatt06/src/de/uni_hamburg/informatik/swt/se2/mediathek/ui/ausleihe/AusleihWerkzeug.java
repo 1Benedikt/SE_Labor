@@ -19,6 +19,7 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.ui.subwerkzeuge.ausleihemedie
 import de.uni_hamburg.informatik.swt.se2.mediathek.ui.subwerkzeuge.kundenauflister.KundenauflisterWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.mediathek.ui.subwerkzeuge.kundendetailanzeiger.KundenDetailAnzeigerWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.mediathek.ui.subwerkzeuge.mediendetailanzeiger.MedienDetailAnzeigerWerkzeug;
+import de.uni_hamburg.informatik.swt.se2.mediathek.ui.vormerken.VormerkKarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Datum;
 
 /**
@@ -217,6 +218,13 @@ public class AusleihWerkzeug
         // Anforderung c).
         boolean ausleiheMoeglich = (kunde != null) && !medien.isEmpty()
                 && _verleihService.sindAlleNichtVerliehen(medien);
+        
+        for (Medium medium : medien)
+        {
+        	VormerkKarte aktuelleKarte = _verleihService.getVormerkkarteFuerMedium(medium);
+        	
+        	if()
+        }
 
         return ausleiheMoeglich;
     }

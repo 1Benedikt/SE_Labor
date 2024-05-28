@@ -74,7 +74,14 @@ public class VerleihServiceImpl extends AbstractObservableService
     
         _vormerkKarten = new HashMap<>();
     }
-
+    
+    
+    /**
+     * merkt kundne vor
+     * @param kunde der unde
+     * @param medium das Medium
+     */
+    
     public void merkeVor(Kunde kunde, Medium medium)
     {
     	VormerkKarte aktuelleKarte = null;
@@ -91,6 +98,22 @@ public class VerleihServiceImpl extends AbstractObservableService
     	aktuelleKarte.fuegeKundenHinzu(kunde);
     	
     }
+    /**
+     * Gibt uns die Vormekkarten
+     * @return Vormekkarten
+     */
+    
+    public  Map<Medium ,VormerkKarte> getVorkkarten()
+    {
+    	return _vormerkKarten;
+    }
+    
+    public VormerkKarte  getVormerkkarteFuerMedium( Medium medium)
+    {
+    	return _vormerkKarten.get(medium);
+    }
+    
+    //------------------------------------------------------------------------------------------------------------------------------
     
     /**
      * Erzeugt eine neue HashMap aus dem Initialbestand.

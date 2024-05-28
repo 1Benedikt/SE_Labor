@@ -1,11 +1,13 @@
 package de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih;
 
 import java.util.List;
+import java.util.Map;
 
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.Kunde;
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.Verleihkarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.ObservableService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.ui.vormerken.VormerkKarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Datum;
 
 /**
@@ -22,7 +24,12 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Datum;
  * @version SoSe 2021
  */
 public interface VerleihService extends ObservableService
+
 {
+	 public  Map<Medium ,VormerkKarte> getVorkkarten();
+	    
+	 public VormerkKarte  getVormerkkarteFuerMedium( Medium medium);
+	    
 	
 	
 	 public void merkeVor(Kunde kunde, Medium medium);
