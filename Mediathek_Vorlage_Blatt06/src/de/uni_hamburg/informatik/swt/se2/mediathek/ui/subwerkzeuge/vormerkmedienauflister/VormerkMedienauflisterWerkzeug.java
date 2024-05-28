@@ -92,6 +92,8 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug
             Kunde vormerker2 =  null;
             Kunde vormerker3 =  null;
 
+           _verleihService.get
+            
             medienFormatierer.add(new VormerkMedienFormatierer(medium,
                     entleiher, vormerker1, vormerker2, vormerker3));
         }
