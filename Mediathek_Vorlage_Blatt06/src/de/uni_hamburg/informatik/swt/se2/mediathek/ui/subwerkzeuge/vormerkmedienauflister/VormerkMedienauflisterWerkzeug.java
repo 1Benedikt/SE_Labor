@@ -13,6 +13,7 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.services.ServiceObserver;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.ui.ObservableSubWerkzeug;
+import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Kundennummer;
 
 /**
  * Ein VormerkMedienauflisterWerkzeug ist ein Werkzeug zum Auflisten von Medien
@@ -84,10 +85,12 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug
             // Entleiher und möglichen Vormerkern ausgestattet werden.
             // Ist dies korrekt implementiert, erscheinen in der Vormerkansicht
             // die Namen des Entleihers und der möglichen 3 Vormerker.
+        	
+        	
             Kunde entleiher = null;
-            Kunde vormerker1 = null;
-            Kunde vormerker2 = null;
-            Kunde vormerker3 = null;
+            Kunde vormerker1 =  null;
+            Kunde vormerker2 =  null;
+            Kunde vormerker3 =  null;
 
             medienFormatierer.add(new VormerkMedienFormatierer(medium,
                     entleiher, vormerker1, vormerker2, vormerker3));

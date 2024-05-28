@@ -11,6 +11,7 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.AbstractObservableService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.kundenstamm.KundenstammService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.ui.vormerken.VormerkKarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Datum;
 
 /**
@@ -45,6 +46,8 @@ public class VerleihServiceImpl extends AbstractObservableService
      */
     private VerleihProtokollierer _protokollierer;
 
+    private Map<Medium, VormerkKarte> _vormerkKarten;
+    
     /**
      * Konstruktor. Erzeugt einen neuen VerleihServiceImpl.
      * 
@@ -63,12 +66,32 @@ public class VerleihServiceImpl extends AbstractObservableService
         assert kundenstamm != null : "Vorbedingung verletzt: kundenstamm  != null";
         assert medienbestand != null : "Vorbedingung verletzt: medienbestand  != null";
         assert initialBestand != null : "Vorbedingung verletzt: initialBestand  != null";
+        
         _verleihkarten = erzeugeVerleihkartenBestand(initialBestand);
         _kundenstamm = kundenstamm;
         _medienbestand = medienbestand;
         _protokollierer = new VerleihProtokollierer();
+    
+        _vormerkKarten = new HashMap<>();
     }
 
+    public void merkeVor(Kunde kunde, Medium medium)
+    {
+    	VormerkKarte aktuelleKarte = null;
+    	
+    	if (_vormerkKarten.containsKey(medium))
+    	{
+    		aktuelleKarte = _vormerkKarten.get(medium);
+    	} else
+    	{
+    		aktuelleKarte = new VormerkKarte(medium);
+    		_vormerkKarten.put(medium, aktuelleKarte);
+    	}
+    	
+    	aktuelleKarte.fuegeKundenHinzu(kunde);
+    	
+    }
+    
     /**
      * Erzeugt eine neue HashMap aus dem Initialbestand.
      */

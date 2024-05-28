@@ -23,6 +23,10 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.wertobjekte.Datum;
  */
 public interface VerleihService extends ObservableService
 {
+	
+	
+	 public void merkeVor(Kunde kunde, Medium medium);
+	
     /**
      * Verleiht Medien an einen Kunden. Dabei wird für jedes Medium eine neue
      * Verleihkarte angelegt.

@@ -8,6 +8,9 @@ package de.uni_hamburg.informatik.swt.se2.mediathek.ui.vormerken;
 
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.Kunde;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 public class VormerkKarte {
 	
@@ -25,10 +28,38 @@ public class VormerkKarte {
 		assert medium != null;
 		assert kunde != null;
 		
+		_vormerkkunden = new LinkedList<>();
 		_medium = medium;
 		_vormerkkunden.add(kunde);
 	}
 	
+	public VormerkKarte(Medium medium)
+	{
+		assert medium != null;
+		_vormerkkunden = new LinkedList<>();
+		
+		_medium = medium;
+	}
+	
+	/**
+	 * Fuegt einen neuen Kunden zur Queue hinzu
+	 * @param kunde
+	 * @return True, wenn Kunde zur Liste hunzugefügt wurde
+	 */
+	public boolean fuegeKundenHinzu(Kunde kunde)
+	{
+		assert kunde != null;
+		assert _vormerkkunden != null;
+		
+		if (_vormerkkunden.size() < 3)
+		{
+			_vormerkkunden.add(kunde);
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
 	
 	/**
 	 * Überprüft, ob Vormerkkarte leer ist
@@ -58,5 +89,22 @@ public class VormerkKarte {
 		assert kunde != null;
 		
 		return _vormerkkunden.contains(kunde);
+	}
+	
+	/**
+	 * Entfernt den ersten Kunden in der Liste
+	 */
+	public void entferneErstenKunden()
+	{
+		_vormerkkunden.remove();
+	}
+	
+	/**
+	 * Gibt alle Kunden als Liste zurück
+	 * @return Kunden als Liste
+	 */
+	public ArrayList<Kunde> getAlleKunden()
+	{
+		return new ArrayList<Kunde>(_vormerkkunden);
 	}
 }

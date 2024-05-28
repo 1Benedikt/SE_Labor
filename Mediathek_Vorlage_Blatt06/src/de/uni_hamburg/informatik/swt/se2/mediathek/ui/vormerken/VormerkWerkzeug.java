@@ -102,6 +102,8 @@ public class VormerkWerkzeug
         // Die Vormerkaktionen werden erzeugt und an der UI registriert.
         registriereUIAktionen();
     }
+   
+    
 
     /**
      * Registriert die Aktionen, die bei benachrichtigungen der Services
@@ -229,8 +231,11 @@ public class VormerkWerkzeug
             .getSelectedMedien();
         Kunde selectedKunde = _kundenAuflisterWerkzeug.getSelectedKunde();
         // TODO für Aufgabenblatt 6 (nicht löschen): Vormerken einbauen
-        
-        
+        for(Medium medium : selectedMedien)
+        {
+            _verleihService.merkeVor(selectedKunde, medium);
+
+        }
 
     }
 
