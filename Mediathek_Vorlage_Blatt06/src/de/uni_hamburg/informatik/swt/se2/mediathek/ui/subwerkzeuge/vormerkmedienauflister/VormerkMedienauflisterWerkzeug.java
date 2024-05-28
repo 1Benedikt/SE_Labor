@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.Kunde;
+import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.Verleihkarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.entitaeten.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.ServiceObserver;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
@@ -96,52 +97,45 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug
         	
         	
         	VormerkKarte  aktuelleKarte = _verleihService.getVormerkkarteFuerMedium(medium);
-        	
-        	System.out.println("a");
-        	
+
         	if(aktuelleKarte != null)
         	{
         		
-        	ArrayList<Kunde> kunden = aktuelleKarte.getAlleKunden();
-        	
-        	
-        	
-        	
-        	
-        	System.out.println("B");
-        	
-        	
-        
-        	
-        	
-        	
-            entleiher = null;
-            
-          
-            
-            if(kunden.size() > 0 )
-            {
-            vormerker1 = kunden.get(0);
-            }
-            if(kunden.size() > 1 )
-            {
-            vormerker2 = kunden.get(1);
-            }
-            if(kunden.size() > 2 )
-            {
-            vormerker3 = kunden.get(2);
-            }
-            
-            
-            
+        		ArrayList<Kunde> kunden = aktuelleKarte.getAlleKunden();
 
+	            
+	
+	            if(kunden.size() > 0 )
+	            {
+	            vormerker1 = kunden.get(0);
+	            }
+	            if(kunden.size() > 1 )
+	            {
+	            vormerker2 = kunden.get(1);
+	            }
+	            if(kunden.size() > 2 )
+	            {
+	            vormerker3 = kunden.get(2);
+	            }
+	  
+        	}
+        	
+        	Verleihkarte verleihKarte = _verleihService.getVerleihkarteFuer(medium);
+        	
+        	
+        	if (verleihKarte != null)
+        	{
+                entleiher = verleihKarte.getEntleiher();
         	}
             
             medienFormatierer.add(new VormerkMedienFormatierer(medium,
                     entleiher, vormerker1, vormerker2, vormerker3));
+           
+
         }
-        _ui.getMedienAuflisterTableModel()
-            .setMedien(medienFormatierer);
+        _ui.getMedienAuflisterTableModel().setMedien(medienFormatierer);
+        
+
     }
 
     /**
@@ -175,6 +169,7 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug
                 // Wenn ein Service eine Änderung mitteilt, dann wird
                 // die angezeigte Liste aller Medien aktualisiert:
                 setzeAnzuzeigendeMedien();
+       
             }
         };
         _medienbestand.registriereBeobachter(beobachter);

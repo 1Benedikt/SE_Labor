@@ -221,9 +221,19 @@ public class AusleihWerkzeug
         
         for (Medium medium : medien)
         {
+        	
+        	
         	VormerkKarte aktuelleKarte = _verleihService.getVormerkkarteFuerMedium(medium);
         	
-        	if()
+        	if (aktuelleKarte == null)
+        	{
+        		continue;
+        	}
+        	
+        	if (aktuelleKarte.getNaechstenKunden() != kunde)
+        	{
+        		ausleiheMoeglich = false;
+        	}
         }
 
         return ausleiheMoeglich;
